@@ -1,0 +1,45 @@
+<mat-card>
+  <mat-spinner *ngIf="isLoading" style="margin:auto"></mat-spinner>
+<form [formGroup]="productForm" (submit)="onSaveProduct()"  *ngIf="!isLoading">
+  <mat-form-field>
+      <input
+          matInput
+          type="text"
+          formControlName="name"
+          placeholder="Name">
+      <mat-error *ngIf="productForm.get('name')invalid">please enter a valid title!</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input
+        matInput
+        type="number"
+        formControlName="price"
+        placeholder="Price">
+    <mat-error *ngIf="productForm.get('price')invalid">please enter a valid title!</mat-error>
+</mat-form-field>
+  <mat-form-field>
+      <textarea
+          matInput
+          rows="10"
+          formControlName="description"
+          placeholder="Description">
+      </textarea>
+      <mat-error *ngIf="productForm.get('description').invalid">please enter a valid title!</mat-error>
+  </mat-form-field>
+  <mat-selection-list formControlName="categories" style="width:100%">
+    <mat-list-option *ngFor="let topic of productTopic" [value]="topic" style="font-weight:500; font-size: 1.4rem;color:black;" class="listItem">
+      {{topic}}
+    </mat-list-option>
+  </mat-selection-list>
+  <!-- <div class="image-preview" *ngIf="imgPreview !== '' && imgPreview && productForm.get('image').valid"> -->
+      <img src="{{imgPath}}" [alt]="productForm.value.title" style="width: 200px; height:200px">
+  <!-- </div> -->
+  <button
+      mat-raised-button
+      color="accent"
+      type="submit"> Save Post
+  </button>
+      <button (click)="imgPicker.click()" type="button" mat-stroked-button style="float: right;">Image</button>
+      <input type="file" #imgPicker (change)="onImgPicker($event)">
+</form>
+</mat-card>

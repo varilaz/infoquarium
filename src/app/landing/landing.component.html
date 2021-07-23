@@ -1,0 +1,28 @@
+<div>
+  <img src="../../assets/img/header.jpg" alt="antiquarium" style="width: 100%;">
+    <!-- <div class="search" style="display: flex; position: absolute; top: 10rem; width: 250px; height:250px; left:60%; background-color: white; opacity: 0.9; box-shadow: 8px 8px 1px grey; overflow-x:auto;">
+      <mat-selection-list #shoes [multiple]="false" style="width:100%">
+        <mat-list-option *ngFor="let nature of productNature" [value]="nature" style="font-weight: 500; font-size: 1.4rem; color:black;">
+          {{nature}}
+        </mat-list-option>
+      </mat-selection-list>
+      <p>
+        Option selected: {{nature.selectedOptions.selected[0]?.value}}
+      </p>
+    </div> -->
+    <div class="search" style="display: flex; position: absolute; top: 10rem; width: 250px; height:250px; left:80%; box-shadow: inset 0 0 4px #000000;   background-color: white; opacity: 0.9; overflow-x:auto;">
+      <mat-selection-list #topics [multiple]="false" style="width:100%">
+        <mat-list-option *ngFor="let topic of productTopic" [value]="topic" style="font-weight:500; font-size: 1.4rem;color:black;" class="listItem">
+          {{topic}}
+        </mat-list-option>
+      </mat-selection-list>
+    </div>
+    <p>
+      Option selected: {{topics.selectedOptions.selected[0]?.value}}
+    </p>
+    <div style="position: absolute; top: 28rem; left:85%;">
+      <button mat-raised-button color="accent" routerLink="/products" (click)="chosenCategory(topics.selectedOptions.selected[0]?.value)">Show products!</button>
+    </div>
+</div>
+<div id="landingbg">
+</div>

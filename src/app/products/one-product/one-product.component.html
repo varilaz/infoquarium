@@ -1,0 +1,24 @@
+<h1>{{name}}: {{price}} $</h1>
+<img src="{{image}}" alt="{{name}}" style="width:400px; height:400px;">
+<p>Description: {{description}}</p>
+<div *ngIf="isUserAndCreator">
+  <button mat-raised-button color="primary"[routerLink]="['/products/edit', productId]" *ngIf="isLoggedin">Edit</button>
+<button mat-raised-button color="warn" *ngIf="isLoggedin" (click)="deleteProduct()">Delete</button>
+</div>
+
+<form [formGroup]="orderForm" (submit)="addToCart()" style="display: flex; justify-content: space-around; width: 200px;">
+  <mat-form-field>
+    <input
+        matInput
+        required
+        type="number"
+        formControlName="quantity"
+        style="border: solid 1px grey; width: 100px"
+    >
+    <mat-error *ngIf="orderForm.get('quantity').invalid">please enter a valid quantity!</mat-error>
+  </mat-form-field>
+
+</form>
+<button  mat-raised-button color="accent" type="submit" (click)="addToCart()"> Add to the cart</button>
+
+

@@ -1,0 +1,14 @@
+<br>
+<div *ngFor="let order of filteredOrderInfo" style="margin-left: 20px;">
+  Product name: {{order.name}} - {{order.price}} $ ---- {{order.orderId}}
+  <br>
+  <img src="../assets/{{order.image}}" alt="{{order.name}}" style="width: 100px; height: 100px;">
+
+    quantity: {{order.quantity}}
+
+  {{order.amount}} $ --- <button (click)="delete(order.orderId)"><mat-icon>delete</mat-icon>Delete {{order.name}}</button>
+  <hr>
+  <br>
+</div>
+<h2>{{total}}</h2>
+

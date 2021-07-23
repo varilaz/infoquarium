@@ -1,0 +1,18 @@
+<div *ngFor="let product of filteredProducts;">
+  {{product.name}}: {{product.price}} $
+  <img src="../assets/{{product.productImage}}" alt="{{product.name}}" style="width: 100px; height: 100px;">
+  <hr>
+  <div style="display: flex;  justify-content: space-around;">
+    <button mat-raised-button color="primary" routerLink="{{product.id}}">Product Detail</button>
+  </div>
+
+  <hr>
+</div>
+<!-- <mat-paginator
+  [length]="count"
+  [pageSize]="productsPerPage"
+  [pageSizeOptions]="pageSizeOptions"
+  (page)="onChangePage($event)"
+  *ngIf="count > 0 ">
+</mat-paginator>
+<p class="mat-body-1 info-text" *ngIf="count <=0 && !isLoading">No post available</p>-->
