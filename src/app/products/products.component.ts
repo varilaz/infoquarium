@@ -18,7 +18,10 @@ export class ProductsComponent implements OnDestroy {
   imageUrl;
   filteredProducts;
   category;
-
+  totalProducts = 0;
+  productsPerPage = 2;
+  currentPage = 1;
+  pageSizeOptions = [1,2, 3, 10];
   subscription: Subscription;
 
   constructor(private productsService: ProductsService){}

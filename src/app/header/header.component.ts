@@ -38,13 +38,13 @@ export class HeaderComponent implements OnInit {
     this.userIsAuthenticated = this.authService.getIsAuth();
     this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(isAuntheticated =>{
      this.userIsAuthenticated = isAuntheticated;
-     this.badgeCount = this.ordersService.getOrderCountData().count;
     });
     if(this.userIsAuthenticated){
      this.subscriptBadge = this.ordersService.getOrderBadgeNumber().subscribe(count => {
         this.badgeCount = count;
       })
 
+      //if the site is refreshed
       this.badgeCount = this.ordersService.getOrderCountData().count;
       this.username = this.authService.getAuthData().username;
       this.isUsername = true;
@@ -67,9 +67,11 @@ export class HeaderComponent implements OnInit {
 
   onLogout(){
     this.authService.logout();
+    this.ordersService.removeOrderCountData();
     this.badgeCount = null;
     this.username = null;
     this.isUsername = false;
+    this.badgeCount = null;
   }
 
   ngOnDestroy(){

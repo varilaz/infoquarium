@@ -40,7 +40,7 @@ export class OrdersService {
     }
   }
 
-  private removeOrderCountData(){
+  public removeOrderCountData(){
     localStorage.removeItem("count");
 }
 

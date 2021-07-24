@@ -20,11 +20,12 @@ export class AuthService{
   private tokenTimer: any;
   private userId: string;
   private username: string;
+  ordercount;
 
   constructor(private http: HttpClient, private router: Router, private ordersService: OrdersService){};
 
 
-  getToken(){
+getToken(){
     //console.log(this.token);
     return this.token;
 }
@@ -85,6 +86,15 @@ login(email:string, password: string){
          const now = new Date();
          const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
          this.saveAuthData(token, expirationDate, this.userId, this.username);
+         this.ordersService.getAllOrders().subscribe((order:any) => {
+           this.ordercount = order.orders.filter(count => {
+             if(this.userId === count.creator){
+                return count.creator
+             }
+           })
+           console.log(this.ordercount.length)
+           this.ordersService.setOrderCount(this.ordercount.length)
+         })
          this.router.navigate(['/']);
         }
 
